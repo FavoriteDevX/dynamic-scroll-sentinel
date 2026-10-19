@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Scroll Sentinel Testing</title>
+  <style>
+    body { font-family: sans-serif; background: #0b0f19; color: #f1f5f9; margin: 0; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+    .spacer { height: 110vh; display: flex; align-items: center; justify-content: center; color: #475569; border: 2px dashed #1e293b; width: 100%; max-width: 600px; margin-bottom: 40px; }
+    .box { background: #1e293b; border: 1px solid #334155; padding: 40px; border-radius: 12px; width: 80%; max-width: 500px; text-align: center; opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .box.reveal { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <h2>Scroll Down to Trigger Sentinel</h2>
+  <div class="spacer">Scroll down to view lazy tracking target...</div>
+  
+  <div id="target-box" class="box" data-sentinel-once>
+    <h3 style="color: #38bdf8; margin: 0 0 10px 0;">Sentinel Intersection Triggered</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.9rem;">This card animated fluidly only when intersecting the modern observer matrix layers.</p>
+  </div>
+
+<script type="module">
+  import { DynamicScrollSentinel } from './sentinel.js';
+
+  const sentinel = new DynamicScrollSentinel({ rootMargin: '-50px' });
+  const card = document.getElementById('target-box');
+
+  sentinel.watch(card, (el) => {
+    el.classList.add('reveal');
+    console.log('Target intercepted successfully by observer loops.');
+  });
+</script>
+</body>
+</html>
