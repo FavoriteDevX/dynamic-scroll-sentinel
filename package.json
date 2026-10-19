@@ -1,0 +1,7 @@
+{
+  "name": "dynamic-scroll-sentinel",
+  "version": "1.0.0",
+  "description": "High-performance viewport tracking, scroll animations, and infinite loading orchestrator utilizing raw IntersectionObserver.",
+  "main": "sentinel.js",
+  "type": "module"
+}
